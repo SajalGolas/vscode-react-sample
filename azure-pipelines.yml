@@ -12,6 +12,15 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Sajal-Connection'
+    appType: 'webAppLinux'
+    WebAppName: 'sajalreactdemo'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'NODE|10-lts'
+    StartupCommand: 'npm run dev'
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
